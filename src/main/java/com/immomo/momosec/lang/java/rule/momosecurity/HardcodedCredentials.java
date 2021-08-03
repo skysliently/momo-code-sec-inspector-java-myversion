@@ -58,6 +58,7 @@ public class HardcodedCredentials extends MomoBaseLocalInspectionTool {
                 }
             }
 
+//            声明型，引用赋值
             @Override
             public void visitAssignmentExpression(PsiAssignmentExpression expression) {
                 PsiExpression lexp = expression.getLExpression();

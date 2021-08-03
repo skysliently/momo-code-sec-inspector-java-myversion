@@ -1,92 +1,116 @@
-/*
- * Copyright 2020 momosecurity.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package com.immomo.momosec.lang.xml.rule.momosecurity;
+package com.zcy.zsec.codeinspect.lang.xml.rule;
 
-import com.immomo.momosec.lang.InspectionBundle;
-import com.immomo.momosec.lang.MomoBaseLocalInspectionTool;
-import com.immomo.momosec.utils.SQLi;
-import com.immomo.momosec.utils.Str;
-import com.intellij.codeInspection.*;
+import com.intellij.codeInspection.LocalQuickFix;
+import com.intellij.codeInspection.ProblemDescriptor;
+import com.intellij.codeInspection.ProblemHighlightType;
+import com.intellij.codeInspection.ProblemsHolder;
 import com.intellij.lang.ASTFactory;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.xml.*;
 import com.intellij.xml.util.XmlUtil;
+import com.zcy.zsec.codeinspect.lang.InspectionBundle;
+import com.zcy.zsec.codeinspect.lang.ZSecBaseLocalInspectionTool;
+import com.zcy.zsec.util.SQLi;
+import com.zcy.zsec.util.Str;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
+import java.util.stream.Collectors;
 
-import static com.immomo.momosec.utils.SQLi.*;
+import static com.zcy.zsec.util.SQLi.*;
 
 /**
  * 1004: Mybatis XML SQL注入漏洞
  *
  * Mybatis XML Mapper SQL语句，使用${}方式插入的变量可能存在SQL注入的风险
  */
-public class MybatisXmlSQLi extends MomoBaseLocalInspectionTool {
+public class MybatisXmlSQLi extends ZSecBaseLocalInspectionTool {
 
     public static final String MESSAGE = InspectionBundle.message("mybatis.xml.sqli.msg");
+//    public static final String MESSAGE = "ZSec: SQL Injection Risk";
     private static final String QUICK_FIX_NAME = InspectionBundle.message("mybatis.xml.sqli.fix");
 
     protected static final Set<String> ignoreVarName =
-            new HashSet<>(Arrays.asList("orderByClause", "pageStart", "pageSize", "criterion.condition", "alias"));
+            new HashSet<>(Arrays.asList("pageSize"));
+    protected static final Set<String> warningVarName =
+            new HashSet<>(Arrays.asList("order by","orderby"));
+    protected static final Set<String> orderByVarName =
+            new HashSet<>(Arrays.asList("order by","orderby"));
+
     private final MybatisXmlSQLiQuickFix mybatisXmlSQLiQuickFix = new MybatisXmlSQLiQuickFix();
 
     @NotNull
     @Override
     public PsiElementVisitor buildVisitor(@NotNull ProblemsHolder holder, boolean isOnTheFly) {
         return new XmlElementVisitor() {
+//            XML 文字内容触发器；标签内的文字内容
             @Override
             public void visitXmlText(XmlText text) {
+//                最外层以及sql、mapper标签不进行检测
                 if (text.getParentTag() != null &&
-                    ("sql".equals(text.getParentTag().getName()) || "mapper".equals(text.getParentTag().getName()) )
-                ) {
-                    return ;
-                }
+                        ("sql".equals(text.getParentTag().getName()) || "mapper".equals(text.getParentTag().getName()) )
+                ) return;
 
                 XmlDocument document = XmlUtil.getContainingFile(text).getDocument();
-                if ( document == null ) { return ; }
+                if (document == null) return;
+
                 String dtd = XmlUtil.getDtdUri(document);
-                if (dtd == null || !(dtd.contains("mybatis.org") && dtd.contains("mapper.dtd"))) { return ; }
+//                判断是否是mybatis配置文件
+                if (dtd == null || !(dtd.contains("mybatis.org") && dtd.contains("mapper.dtd"))) return;
 
                 String _text = text.getValue();
-                if (_text.isEmpty() || !_text.contains("${")) { return ; }
+                if (_text.isEmpty() || !_text.contains("${")) return;
 
-                Matcher m = dollarVarPattern.matcher(_text);
+                Matcher matcher = dollarVarPattern.matcher(_text);
                 int offset = 0;
-                while (m.find(offset)) {
-                    String prefix = _text.substring(0, m.start());
-                    String var    = m.group(1);
-                    String suffix = _text.substring(m.end());
+                while (matcher.find(offset)) {
+                    String prefix = _text.substring(0, matcher.start());
+                    String var    = matcher.group(1);
+                    String suffix = _text.substring(matcher.end());
+
+                    if (!ignorePosition(prefix, var, suffix) && orderByPosition(prefix, var, suffix)) {
+                        holder.registerProblem(text, MESSAGE, ProblemHighlightType.GENERIC_ERROR_OR_WARNING);
+//                        holder.registerProblem(text, MESSAGE, ProblemHighlightType.WARNING);
+                        break;
+                    }
 //                    判断是否在ignore列表中，并判断此处是否有注入风险
                     if (!ignorePosition(prefix, var, suffix) && SQLi.hasVulOnSQLJoinStr(prefix, var, suffix)) {
                         holder.registerProblem(text, MESSAGE, ProblemHighlightType.GENERIC_ERROR_OR_WARNING, mybatisXmlSQLiQuickFix);
+//                        holder.registerProblem(text, MESSAGE, ProblemHighlightType.GENERIC_ERROR_OR_WARNING);
                         break;
                     }
-                    offset = m.end();
+                    offset = matcher.end();
                 }
             }
         };
     }
 
+//    保留忽略逻辑，忽略内容待定
     private static boolean ignorePosition(String prefix, String var, String suffix) {
-        return MybatisXmlSQLi.ignoreVarName.contains(var) || var.startsWith("ew.");
+//        return MybatisXmlSQLi.ignoreVarName.contains(var) || var.startsWith("ew.");
+        return MybatisXmlSQLi.ignoreVarName.contains(var.toLowerCase());
+    }
+
+//    区分部分关键字
+    private static boolean warningPosition(String prefix, String var, String suffix) {
+        return warningVarName.contains(var.toLowerCase());
+    }
+
+//    对order by 进行单独检测
+    private static boolean orderByPosition(String prefix, String var, String suffix) {
+        List<String> fragments = Arrays.stream(prefix.split("[\\s|(]+"))
+                .map(String::trim)
+                .filter(item -> !item.isEmpty())
+                .collect(Collectors.toList());
+        String checkStr = fragments.get(fragments.size()-2) + fragments.get(fragments.size()-1);
+        return orderByVarName.contains(checkStr.toLowerCase());
     }
 
     public static class MybatisXmlSQLiQuickFix implements LocalQuickFix {
@@ -196,4 +220,5 @@ public class MybatisXmlSQLi extends MomoBaseLocalInspectionTool {
         }
 
     }
+
 }

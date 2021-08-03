@@ -44,11 +44,17 @@
             implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.MybatisAnnotationSQLi"
         />
 
+<!--        <localInspection-->
+<!--            language="XML"        groupPath="XML"-->
+<!--            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"-->
+<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="mybatis.xml.sqli.name"-->
+<!--            implementationClass="com.immomo.momosec.lang.xml.rule.momosecurity.MybatisXmlSQLi"-->
+<!--        />-->
         <localInspection
             language="XML"        groupPath="XML"
-            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
+            groupName="ZSec"   enabledByDefault="true"    level="ERROR"
             bundle="com.immomo.momosec.bundle.InspectionBundle"     key="mybatis.xml.sqli.name"
-            implementationClass="com.immomo.momosec.lang.xml.rule.momosecurity.MybatisXmlSQLi"
+            implementationClass="com.zcy.zsec.codeinspect.lang.xml.rule.MybatisXmlSQLi"
         />
 
         <localInspection
@@ -142,11 +148,17 @@
             implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.SpringSecurityDebugEnabled"
         />
 
+<!--        <localInspection-->
+<!--            language="JAVA"      groupPath="Java"-->
+<!--            groupName="MomoSec"  enabledByDefault="true"     level="WARNING"-->
+<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="hardcoded.credentials.name"-->
+<!--            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.HardcodedCredentials"-->
+<!--        />-->
         <localInspection
             language="JAVA"      groupPath="Java"
             groupName="MomoSec"  enabledByDefault="true"     level="WARNING"
             bundle="com.immomo.momosec.bundle.InspectionBundle"     key="hardcoded.credentials.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.HardcodedCredentials"
+            implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.HardcodedCredentials"
         />
 
         <localInspection
@@ -193,5 +205,17 @@
 
     <actions>
         <!-- Add your actions here -->
+<!--        <action id="com.zcy.test" class="com.immomo.momosec.lang.TestCON" text="mytest" description="test">-->
+<!--            <add-to-group group-id="MainMenu" anchor="last"/>-->
+<!--        </action>-->
+<!--        <group id="com.immomo.momosec.lang.SampleMenu" text="Sample Menu" description="Sample menu">-->
+<!--            <add-to-group group-id="MainMenu" anchor="last"  />-->
+<!--            <action id="com.immomo.momosec.lang.TextBoxes" class="com.immomo.momosec.lang.TextBoxes" text="Text Boxes"-->
+<!--                    description="A test menu item" />-->
+<!--        </group>-->
+<!--        <action id="com.immomo.momosec.TestAction" class="com.immomo.momosec.lang.TestAction" text="TestAction"-->
+<!--                description="TestAction">-->
+<!--            <add-to-group group-id="GenerateGroup" anchor="last"/>-->
+<!--        </action>-->
     </actions>
 </idea-plugin>

@@ -3,7 +3,8 @@ plugins {
     id 'org.jetbrains.intellij' version '0.5.0'
 }
 
-group 'com.immomo.momosec'
+//group 'com.immomo.momosec'
+group 'com.zcy.zsec'
 version plugin_version
 
 java {
@@ -13,12 +14,15 @@ java {
 
 repositories {
     mavenCentral()
+//    mavenLocal()
 }
 
 dependencies {
     compileOnly    group: 'org.apache.commons',         name: 'commons-lang3',  version: '3.4'
     implementation group: 'commons-codec',              name: 'commons-codec',  version: '1.13'
+//    implementation group: 'commons-codec',              name: 'commons-codec',  version: '1.14'
     implementation group: 'me.gosimple',                name: 'nbvcxz',         version: '1.5.0'
+//    implementation group: 'me.gosimple',                name: 'nbvcxz',         version: '1.4.3'
 
     testImplementation group: 'junit',                  name: 'junit',          version: '4.12'
 }

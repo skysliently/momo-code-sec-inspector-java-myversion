@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.immomo.momosec.utils;
+/*
+ * 来自于momo ide检测插件
+ */
+package com.zcy.zsec.util;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -52,6 +55,7 @@ public class SQLi {
         return false;
     }
 
+//   只进行了小写判断，判断逻辑存在一定的缺陷
     /**
      * 判断SQL拼接点的字符串是否有SQL注入风险
      * @param prefix String
@@ -61,7 +65,7 @@ public class SQLi {
      */
     public static boolean hasVulOnSQLJoinStr(@NotNull String prefix, @Nullable String var, @Nullable String suffix) {
 //        拆分语句为单个关键词
-        List<String> fragments = Arrays.stream(prefix.split("[\\s|(]+"))
+        List<String> fragments = Arrays.stream(prefix.toLowerCase().split("[\\s|(]+"))
                 .map(String::trim)
                 .filter(item -> !item.isEmpty())
                 .collect(Collectors.toList());
