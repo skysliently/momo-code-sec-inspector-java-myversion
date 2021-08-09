@@ -112,11 +112,17 @@
             implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.XStreamUnserialize"
         />
 
+<!--        <localInspection-->
+<!--            language="JAVA"       groupPath="Java"-->
+<!--            groupName="MomoSec"   enabledByDefault="true"    level="WARNING"-->
+<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="weak.hash.inspector.name"-->
+<!--            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.WeakHashInspector"-->
+<!--        />-->
         <localInspection
             language="JAVA"       groupPath="Java"
             groupName="MomoSec"   enabledByDefault="true"    level="WARNING"
             bundle="com.immomo.momosec.bundle.InspectionBundle"     key="weak.hash.inspector.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.WeakHashInspector"
+            implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.WeakHashInspector"
         />
 
 <!--        <localInspection-->

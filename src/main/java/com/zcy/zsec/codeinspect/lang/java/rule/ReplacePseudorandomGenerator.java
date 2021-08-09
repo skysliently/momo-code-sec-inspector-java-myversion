@@ -69,6 +69,7 @@ public class ReplacePseudorandomGenerator extends ZSecBaseLocalInspectionTool {
 
             PsiElement parent = newExp.getParent();
             PsiTypeElement typeElement = null;
+            // 赋值型
             if (parent instanceof PsiAssignmentExpression) {
                 // 变量初始化, parent指向声明点
                 PsiAssignmentExpression assignmentExpression = ObjectUtils.tryCast(parent, PsiAssignmentExpression.class);
@@ -79,7 +80,7 @@ public class ReplacePseudorandomGenerator extends ZSecBaseLocalInspectionTool {
                     }
                 }
             }
-
+            // 本地变量
             if (parent instanceof PsiLocalVariable) {
                 // 变量声明同时初始化
                 PsiLocalVariable localVariable = ObjectUtils.tryCast(parent, PsiLocalVariable.class);
@@ -99,8 +100,10 @@ public class ReplacePseudorandomGenerator extends ZSecBaseLocalInspectionTool {
             }
 
             PsiElementFactory factory = JavaPsiFacade.getElementFactory(project);
+//            replace文本
             typeElement.replace(factory.createTypeElementFromText("SecureRandom", null));
             PsiNewExpression secureNewExp = (PsiNewExpression)factory.createExpressionFromText("new SecureRandom()", null);
+//            replace文本
             newExp.replace(secureNewExp);
 
             // point NewExpression to element in file

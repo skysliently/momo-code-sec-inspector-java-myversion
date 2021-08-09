@@ -66,7 +66,7 @@ public class ZSecExpressionUtils {
      * (2) 基础类型 / 枚举类型
      * (3) field 字段
      * @param expression PsiExpression
-     * @param force boolean             强制转换为表达式字面值
+     * @param force boolean 强制转换为表达式字面值
      * @return String
      */
     @Nullable
