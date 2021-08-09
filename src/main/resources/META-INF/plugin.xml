@@ -92,11 +92,17 @@
             implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.PredictableSeed"
         />
 
+<!--        <localInspection-->
+<!--            language="JAVA"       groupPath="Java"-->
+<!--            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"-->
+<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="xxe.inspector.name"-->
+<!--            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.XxeInspector"-->
+<!--        />-->
         <localInspection
             language="JAVA"       groupPath="Java"
             groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
             bundle="com.immomo.momosec.bundle.InspectionBundle"     key="xxe.inspector.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.XxeInspector"
+            implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.XxeInspector"
         />
 
         <localInspection
@@ -113,11 +119,17 @@
             implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.WeakHashInspector"
         />
 
+<!--        <localInspection-->
+<!--            language="JAVA"       groupPath="Java"-->
+<!--            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"-->
+<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="outdated.encryption.inspector.name"-->
+<!--            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.OutdatedEncryptionInspector"-->
+<!--        />-->
         <localInspection
             language="JAVA"       groupPath="Java"
             groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
             bundle="com.immomo.momosec.bundle.InspectionBundle"     key="outdated.encryption.inspector.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.OutdatedEncryptionInspector"
+            implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.CipherWeaknessInspector"
         />
 
         <localInspection
@@ -175,11 +187,17 @@
             implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.SpringSessionFixProtection"
         />
 
+<!--        <localInspection-->
+<!--            language="JAVA"      groupPath="Java"-->
+<!--            groupName="MomoSec"  enabledByDefault="true"     level="ERROR"-->
+<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="replace.pseudorandom.generator.name"-->
+<!--            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.ReplacePseudorandomGenerator"-->
+<!--        />-->
         <localInspection
             language="JAVA"      groupPath="Java"
             groupName="MomoSec"  enabledByDefault="true"     level="ERROR"
             bundle="com.immomo.momosec.bundle.InspectionBundle"     key="replace.pseudorandom.generator.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.ReplacePseudorandomGenerator"
+            implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.ReplacePseudorandomGenerator"
         />
 
         <localInspection
@@ -195,6 +213,20 @@
             bundle="com.immomo.momosec.bundle.InspectionBundle"     key="hardcoded.ip.name"
             implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.HardcodedIp"
         />
+
+        <localInspection
+            language="JAVA"      groupPath="Java"
+            groupName="MomoSec"  enabledByDefault="true"     level="WARNING"
+            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="commend.injection.exec.name"
+            implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.CommendInjectExecInspector"
+        />
+
+<!--        <localInspection-->
+<!--            language="JAVA"      groupPath="Java"-->
+<!--            groupName="MomoSec"  enabledByDefault="true"     level="WARNING"-->
+<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="hardcoded.ip.msg"-->
+<!--            implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.WeakRandomInspector"-->
+<!--        />-->
     </extensions>
 
     <application-components>
@@ -205,17 +237,5 @@
 
     <actions>
         <!-- Add your actions here -->
-<!--        <action id="com.zcy.test" class="com.immomo.momosec.lang.TestCON" text="mytest" description="test">-->
-<!--            <add-to-group group-id="MainMenu" anchor="last"/>-->
-<!--        </action>-->
-<!--        <group id="com.immomo.momosec.lang.SampleMenu" text="Sample Menu" description="Sample menu">-->
-<!--            <add-to-group group-id="MainMenu" anchor="last"  />-->
-<!--            <action id="com.immomo.momosec.lang.TextBoxes" class="com.immomo.momosec.lang.TextBoxes" text="Text Boxes"-->
-<!--                    description="A test menu item" />-->
-<!--        </group>-->
-<!--        <action id="com.immomo.momosec.TestAction" class="com.immomo.momosec.lang.TestAction" text="TestAction"-->
-<!--                description="TestAction">-->
-<!--            <add-to-group group-id="GenerateGroup" anchor="last"/>-->
-<!--        </action>-->
     </actions>
 </idea-plugin>

@@ -49,6 +49,7 @@ public abstract class MomoBaseLocalInspectionTool extends AbstractBaseJavaLocalI
     protected boolean checkVariableUseFix(@Nullable PsiElement assignElem, @Nullable PsiElement resolvedElem, @NotNull MomoBaseFixElementWalkingVisitor visitor) {
         PsiMethod method = MoExpressionUtils.getParentOfMethod(assignElem);
         if (method != null) {
+//            触发DisableEntityElementVisitor中重写的visitElement方法
             method.accept(visitor);
             return visitor.isFix();
         }

@@ -48,6 +48,19 @@ public class ZSecExpressionUtils {
     }
 
     /**
+     * 判断newExpression是否是qualifiedName类
+     * @param newExpression PsiNewExpression
+     * @param qualifiedName String
+     * @return boolean
+     */
+    public static boolean hasFullQualifiedName(PsiNewExpression newExpression, String qualifiedName) {
+        if (newExpression.getClassReference() == null) {
+            return false;
+        }
+        return qualifiedName.equals(newExpression.getClassReference().getQualifiedName());
+    }
+
+    /**
      * 将表达式尝试转换为文本内容
      * (1) 文本节点解析
      * (2) 基础类型 / 枚举类型
@@ -106,4 +119,37 @@ public class ZSecExpressionUtils {
         }
         return value;
     }
+
+    /**
+     * 向上查找到当前的Method
+     * @param element PsiElement
+     * @return PsiMethod | null
+     */
+    @Nullable
+    public static PsiMethod getParentOfMethod(PsiElement element) {
+        while (!(element instanceof PsiMethod)) {
+            if (element == null) {
+                return null;
+            }
+            element = element.getParent();
+        }
+        return (PsiMethod)element;
+    }
+
+    /**
+     * 向上查找到当前的ClassInitializer
+     * @param element PsiElement
+     * @return PsiClassInitializer | null
+     */
+    @Nullable
+    public static PsiClassInitializer getParentOfClassInitializer(PsiElement element) {
+        while(!(element instanceof PsiClassInitializer)) {
+            if (element == null) {
+                return null;
+            }
+            element = element.getParent();
+        }
+        return (PsiClassInitializer)element;
+    }
+
 }
