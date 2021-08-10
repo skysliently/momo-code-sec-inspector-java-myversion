@@ -1,7 +1,10 @@
 <idea-plugin>
-    <id>Momo Code Sec Inspector (Java)</id>
-    <name>Momo Code Sec Inspector (Java)</name>
-    <vendor email="mmsrc@immomo.com">immomo.com</vendor>
+<!--    <id>Momo Code Sec Inspector (Java)</id>-->
+    <id>ZSec Code Sec Inspector (Java)</id>
+<!--    <name>Momo Code Sec Inspector (Java)</name>-->
+    <name>ZSec Code Sec Inspector (Java)</name>
+<!--    <vendor email="mmsrc@immomo.com">immomo.com</vendor>-->
+    <vendor email="security@cai-inc.com">zcygov.com</vendor>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
@@ -23,214 +26,103 @@
 <!--        <postStartupActivity implementation="com.immomo.momosec.VulnSignWhiteListService"/>-->
 <!--        <projectService serviceImplementation="com.immomo.momosec.FeedbackService" />-->
 
-        <localInspection
-            language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"   level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="polyadic.expression.sqli.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.PolyadicExpressionSQLi"
-        />
-
-        <localInspection
-            language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"   level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="placeholder.string.sqli.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.PlaceholderStringSQLi"
-        />
-
-        <localInspection
-            language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"   level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="mybatis.annotation.sqli.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.MybatisAnnotationSQLi"
-        />
-
 <!--        <localInspection-->
 <!--            language="XML"        groupPath="XML"-->
 <!--            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"-->
-<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="mybatis.xml.sqli.name"-->
+<!--            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="mybatis.xml.sqli.name"-->
 <!--            implementationClass="com.immomo.momosec.lang.xml.rule.momosecurity.MybatisXmlSQLi"-->
 <!--        />-->
         <localInspection
             language="XML"        groupPath="XML"
             groupName="ZSec"   enabledByDefault="true"    level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="mybatis.xml.sqli.name"
+            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="mybatis.xml.sqli.name"
             implementationClass="com.zcy.zsec.codeinspect.lang.xml.rule.MybatisXmlSQLi"
         />
 
-        <localInspection
-            language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="regex.dos.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.RegexDos"
-        />
-
-        <localInspection
-            language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="jackson.databind.default.typing.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.JacksonDatabindDefaultTyping"
-        />
-
-        <localInspection
-            language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="fastjson.auto.type.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.FastjsonAutoType"
-        />
-
-        <localInspection
-            language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="netty.response.splitting.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.NettyResponseSplitting"
-        />
-
-        <localInspection
-            language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="predictable.seed.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.PredictableSeed"
-        />
 
 <!--        <localInspection-->
 <!--            language="JAVA"       groupPath="Java"-->
 <!--            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"-->
-<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="xxe.inspector.name"-->
+<!--            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="xxe.inspector.name"-->
 <!--            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.XxeInspector"-->
 <!--        />-->
         <localInspection
             language="JAVA"       groupPath="Java"
             groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="xxe.inspector.name"
+            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="xxe.inspector.name"
             implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.XxeInspector"
-        />
-
-        <localInspection
-            language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="xstream.unserialize.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.XStreamUnserialize"
         />
 
 <!--        <localInspection-->
 <!--            language="JAVA"       groupPath="Java"-->
 <!--            groupName="MomoSec"   enabledByDefault="true"    level="WARNING"-->
-<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="weak.hash.inspector.name"-->
+<!--            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="weak.hash.inspector.name"-->
 <!--            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.WeakHashInspector"-->
 <!--        />-->
         <localInspection
             language="JAVA"       groupPath="Java"
             groupName="MomoSec"   enabledByDefault="true"    level="WARNING"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="weak.hash.inspector.name"
+            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="weak.hash.inspector.name"
             implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.WeakHashInspector"
         />
 
 <!--        <localInspection-->
 <!--            language="JAVA"       groupPath="Java"-->
 <!--            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"-->
-<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="outdated.encryption.inspector.name"-->
+<!--            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="outdated.encryption.inspector.name"-->
 <!--            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.OutdatedEncryptionInspector"-->
 <!--        />-->
         <localInspection
             language="JAVA"       groupPath="Java"
             groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="outdated.encryption.inspector.name"
+            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="outdated.encryption.inspector.name"
             implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.CipherWeaknessInspector"
-        />
-
-        <localInspection
-            language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="xml.decoder.unserialize.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.XMLDecoderUnserialize"
-        />
-
-        <localInspection
-            language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="ldap.unserialize.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.LDAPUnserialize"
-        />
-
-        <localInspection
-            language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="board.cors.allow.origin.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.BroadCORSAllowOrigin"
-        />
-
-        <localInspection
-            language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="spring.security.debug.enabled.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.SpringSecurityDebugEnabled"
         />
 
 <!--        <localInspection-->
 <!--            language="JAVA"      groupPath="Java"-->
 <!--            groupName="MomoSec"  enabledByDefault="true"     level="WARNING"-->
-<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="hardcoded.credentials.name"-->
+<!--            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="hardcoded.credentials.name"-->
 <!--            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.HardcodedCredentials"-->
 <!--        />-->
         <localInspection
             language="JAVA"      groupPath="Java"
             groupName="MomoSec"  enabledByDefault="true"     level="WARNING"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="hardcoded.credentials.name"
+            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="hardcoded.credentials.name"
             implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.HardcodedCredentials"
         />
 
         <localInspection
             language="JAVA"      groupPath="Java"
             groupName="MomoSec"  enabledByDefault="true"     level="WARNING"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="public.controller.on.spring.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.PublicControllerOnSpring"
-        />
-
-        <localInspection
-            language="JAVA"      groupPath="Java"
-            groupName="MomoSec"  enabledByDefault="true"     level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="spring.session.fix.protection.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.SpringSessionFixProtection"
+            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="hardcoded.ip.name"
+            implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.HardcodedIp"
         />
 
 <!--        <localInspection-->
 <!--            language="JAVA"      groupPath="Java"-->
 <!--            groupName="MomoSec"  enabledByDefault="true"     level="ERROR"-->
-<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="replace.pseudorandom.generator.name"-->
+<!--            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="replace.pseudorandom.generator.name"-->
 <!--            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.ReplacePseudorandomGenerator"-->
 <!--        />-->
         <localInspection
             language="JAVA"      groupPath="Java"
             groupName="MomoSec"  enabledByDefault="true"     level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="replace.pseudorandom.generator.name"
+            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="replace.pseudorandom.generator.name"
             implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.ReplacePseudorandomGenerator"
         />
 
         <localInspection
             language="JAVA"      groupPath="Java"
-            groupName="MomoSec"  enabledByDefault="true"     level="ERROR"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="open.saml2.ignore.comment.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.OpenSAML2IgnoreComment"
-        />
-
-        <localInspection
-            language="JAVA"      groupPath="Java"
             groupName="MomoSec"  enabledByDefault="true"     level="WARNING"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="hardcoded.ip.name"
-            implementationClass="com.immomo.momosec.lang.java.rule.momosecurity.HardcodedIp"
-        />
-
-        <localInspection
-            language="JAVA"      groupPath="Java"
-            groupName="MomoSec"  enabledByDefault="true"     level="WARNING"
-            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="commend.injection.exec.name"
+            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="commend.injection.exec.name"
             implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.CommendInjectExecInspector"
         />
 
 <!--        <localInspection-->
 <!--            language="JAVA"      groupPath="Java"-->
 <!--            groupName="MomoSec"  enabledByDefault="true"     level="WARNING"-->
-<!--            bundle="com.immomo.momosec.bundle.InspectionBundle"     key="hardcoded.ip.msg"-->
+<!--            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="hardcoded.ip.msg"-->
 <!--            implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.WeakRandomInspector"-->
 <!--        />-->
     </extensions>

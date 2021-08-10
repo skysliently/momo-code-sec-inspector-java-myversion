@@ -1,8 +1,8 @@
 <html>
 <body>
-<b>Momo 1004:</b> Mybatis注解式SQL注入漏洞 <br>
+<b>ZSec:</b> Mybatis注解式SQL注入漏洞 <br>
 <br>
-<p>攻击者可利用此漏洞，恶意构造SQL语句，导致数据库信息泄漏或被篡改。</p>
+<p>攻击者可利用此漏洞，恶意构造SQL语句，导致数据库信息泄漏或被篡改。严重情况下攻击者甚至可以控制数据库服务器。</p>
 <br>
 <p style="font-size: 10px;color: #d9534f;">错误实践:</p>
 <p style="font-size: 10px;">
@@ -11,6 +11,11 @@
         select * from table
         where id in <b style="color: #d9534f;">($ids)</b>
         and status = <b style="color: #d9534f;">${status}</b>
+    &#x3c;/select>
+
+    &#x3c;select id="getUsers" resultMap="User">
+        select * from table
+        where title like <b style="color: #d9534f;">'%${title}%'</b>
     &#x3c;/select>
 </pre>
 <br>
@@ -25,7 +30,16 @@
         &#x3c;/foreach></b>
         and status = <b style="color: #629460;">#{status}</b>
     &#x3c;/select>
+
+    &#x3c;select id="getUsers" resultMap="User">
+        select * from table
+        where title like <b style="color: #629460;">concat('%', #{title}, '%')</b>
+    &#x3c;/select>
 </pre>
 </p>
+<references style="font-size: 7px;">
+    <p>参考资料:</p>
+    <p><a href="http://confluence.cai-inc.com/pages/viewpage.action?pageId=67306604#id-%E5%AE%89%E5%85%A8%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%E4%B8%8E%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E5%BA%94%E5%AF%B9%E5%8F%82%E8%80%83-SQL%E6%B3%A8%E5%85%A5">安全编码规范与常见漏洞应对参考-SQL注入</a></p>
+</references>
 </body>
 </html>

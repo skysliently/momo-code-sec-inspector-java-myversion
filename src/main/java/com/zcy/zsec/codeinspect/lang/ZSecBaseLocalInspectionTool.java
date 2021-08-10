@@ -3,9 +3,10 @@
  */
 package com.zcy.zsec.codeinspect.lang;
 
-import com.immomo.momosec.lang.java.utils.MoExpressionUtils;
+//import com.immomo.momosec.lang.java.utils.MoExpressionUtils;
 import com.intellij.codeInspection.AbstractBaseJavaLocalInspectionTool;
 import com.intellij.psi.*;
+import com.zcy.zsec.codeinspect.lang.java.util.ZSecExpressionUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,14 +35,14 @@ public abstract class ZSecBaseLocalInspectionTool extends AbstractBaseJavaLocalI
      * @return boolean
      */
     protected boolean checkVariableUseFix(@Nullable PsiElement assignElem, @Nullable PsiElement resolvedElem, @NotNull ZSecBaseFixElementWalkingVisitor visitor) {
-        PsiMethod method = MoExpressionUtils.getParentOfMethod(assignElem);
+        PsiMethod method = ZSecExpressionUtils.getParentOfMethod(assignElem);
         if (method != null) {
 //            触发DisableEntityElementVisitor中重写的visitElement方法
             method.accept(visitor);
             return visitor.isFix();
         }
 
-        PsiClassInitializer initializer = MoExpressionUtils.getParentOfClassInitializer(assignElem);
+        PsiClassInitializer initializer = ZSecExpressionUtils.getParentOfClassInitializer(assignElem);
         if (initializer != null) {
 //            触发DisableEntityElementVisitor中重写的visitElement方法
             initializer.accept(visitor);

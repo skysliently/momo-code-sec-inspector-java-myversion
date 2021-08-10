@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * 弱加密检测，主要针对Cipher检测
+ * 大部分代码来自于momo插件
  *
  * DES / 3DES(DESede) 为过时的加密标准
  *
@@ -47,7 +48,7 @@ public class CipherWeaknessInspector extends ZSecBaseLocalInspectionTool {
                         if (null != trans && trans.startsWith("DES")) {
                             holder.registerProblem(expression, MESSAGE, ProblemHighlightType.GENERIC_ERROR_OR_WARNING);
                         }
-                        else if (null != trans && trans.startsWith("AES/ECB"))
+                        else if (null != trans && (trans.startsWith("AES/ECB") || trans.startsWith("AES/CBC")) )
                             holder.registerProblem(expression, AES_ECB_MESSAGE, ProblemHighlightType.WARNING);
                     }
                 }

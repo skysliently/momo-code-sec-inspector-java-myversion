@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 Main version site uses 'x' stand for idea main version. 
 
+## [unknow]
+
+### Modify
+
+- WeakHashInspector add SHA1
+- ReplacePseudorandomGenerator add scala.util.Random
+- HardcodedCredentials change rules
+- CipherWeaknessInspector add AES CBC/ECB
+
+### Added
+
+- CommendInjectExecInspector
+
+### Deleted
+
+- Other plugin
+
 ## [x.19]
 
 ### BugFix

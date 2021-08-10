@@ -1,15 +1,20 @@
 <html>
 <body>
-<b>ZSec 1015:</b> 过时的加密标准/AES ECB模式 <br>
+<b>ZSec</b> 过时的加密标准/AES ECB模式/AES CBC模式 <br>
 <br>
-<p>DES / 3DES(DESede) 为过时的加密标准，在项目中应使用AES加密（注意 AES ECB模式模式存在风险）。</p>
+<p>DES / 3DES(DESede) 为过时的加密标准，在项目中应使用AES加密（注意 AES ECB/CBC模式模式存在风险）。</p>
 <br>
 <p>2005年美国国家标准技术研究所(NIST)已撤销了过时的数据加密标准，以及相关的两项标准。</p>
+<br>
+<p>AES ECB/CBC模式已存在攻击历史实例，例如Shiro-721漏洞，使用加密时需注意使用规范，不要将初始向量设置为全0等具有风险的初始值。</p>
 <br>
 <hr>
 <references style="font-size: 7px;">
     <p>参考资料:</p>
     <p><a href="https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard">NIST Withdraws Outdated Data Encryption Standard</a></p>
+    <p><a href="https://zh.wikipedia.org/wiki/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F">分组密码工作模式</a></p>
+    <p><a href="https://zh.wikipedia.org/zh-hans/%E5%AF%86%E6%96%87%E5%A1%AB%E5%A1%9E%E6%94%BB%E5%87%BB">密文填塞攻击</a></p>
+    <p><a href="https://www.freebuf.com/articles/database/258301.html">由浅入深了解AES ECB模式加密和明文主动攻击</a></p>
 </references>
 </body>
 </html>

@@ -22,8 +22,8 @@ import org.jetbrains.annotations.PropertyKey;
 
 public class InspectionBundle extends AbstractBundle {
     @NonNls
-//    public static final String BUNDLE = "com.zcy.zsec.codeinspect.bundle.InspectionBundle";
-    public static final String BUNDLE = "com.immomo.momosec.bundle.InspectionBundle";
+    public static final String BUNDLE = "com.zcy.zsec.codeinspect.bundle.InspectionBundle";
+//    public static final String BUNDLE = "com.immomo.momosec.bundle.InspectionBundle";
     private static final AbstractBundle INSTANCE = new InspectionBundle();
 
     private InspectionBundle() {
