@@ -83,7 +83,10 @@ public class MybatisXmlSQLi extends ZSecBaseLocalInspectionTool {
 //                    判断是否在ignore列表中，并判断此处是否有注入风险
                     if (!ignorePosition(prefix, var, suffix) && SQLi.hasVulOnSQLJoinStr(prefix, var, suffix)) {
                         holder.registerProblem(text, MESSAGE, ProblemHighlightType.GENERIC_ERROR_OR_WARNING, mybatisXmlSQLiQuickFix);
-//                        holder.registerProblem(text, MESSAGE, ProblemHighlightType.GENERIC_ERROR_OR_WARNING);
+                        break;
+                    }
+                    else if (!ignorePosition(prefix, var, suffix)) {
+                        holder.registerProblem(text, MESSAGE, ProblemHighlightType.WARNING);
                         break;
                     }
                     offset = matcher.end();
