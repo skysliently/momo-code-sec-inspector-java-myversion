@@ -61,7 +61,7 @@
 <!--        />-->
         <localInspection
             language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"    level="WARNING"
+            groupName="ZSec"   enabledByDefault="true"    level="WARNING"
             bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="weak.hash.inspector.name"
             implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.WeakHashInspector"
         />
@@ -74,7 +74,7 @@
 <!--        />-->
         <localInspection
             language="JAVA"       groupPath="Java"
-            groupName="MomoSec"   enabledByDefault="true"    level="ERROR"
+            groupName="ZSec"   enabledByDefault="true"    level="ERROR"
             bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="outdated.encryption.inspector.name"
             implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.CipherWeaknessInspector"
         />
@@ -87,14 +87,14 @@
 <!--        />-->
         <localInspection
             language="JAVA"      groupPath="Java"
-            groupName="MomoSec"  enabledByDefault="true"     level="WARNING"
+            groupName="ZSec"  enabledByDefault="true"     level="WARNING"
             bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="hardcoded.credentials.name"
             implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.HardcodedCredentials"
         />
 
         <localInspection
             language="JAVA"      groupPath="Java"
-            groupName="MomoSec"  enabledByDefault="true"     level="WARNING"
+            groupName="ZSec"  enabledByDefault="true"     level="WARNING"
             bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="hardcoded.ip.name"
             implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.HardcodedIp"
         />
@@ -107,14 +107,14 @@
 <!--        />-->
         <localInspection
             language="JAVA"      groupPath="Java"
-            groupName="MomoSec"  enabledByDefault="true"     level="ERROR"
+            groupName="ZSec"  enabledByDefault="true"     level="ERROR"
             bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="replace.pseudorandom.generator.name"
             implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.ReplacePseudorandomGenerator"
         />
 
         <localInspection
             language="JAVA"      groupPath="Java"
-            groupName="MomoSec"  enabledByDefault="true"     level="WARNING"
+            groupName="ZSec"  enabledByDefault="true"     level="WARNING"
             bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="commend.injection.exec.name"
             implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.CommendInjectExecInspector"
         />
@@ -125,6 +125,14 @@
 <!--            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="hardcoded.ip.msg"-->
 <!--            implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.WeakRandomInspector"-->
 <!--        />-->
+
+        <localInspection
+            language="JAVA"      groupPath="Java"
+            groupName="ZSec"  enabledByDefault="true"     level="WARNING"
+            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="credential.trust.override.name"
+            implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.X509TrustManagerOverrideInspector"
+        />
+
     </extensions>
 
     <application-components>
