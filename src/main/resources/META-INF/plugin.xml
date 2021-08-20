@@ -133,6 +133,13 @@
             implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.X509TrustManagerOverrideInspector"
         />
 
+        <localInspection
+            language="JAVA"      groupPath="Java"
+            groupName="ZSec"  enabledByDefault="true"     level="WARNING"
+            bundle="com.zcy.zsec.codeinspect.bundle.InspectionBundle"     key="regex.dos.name"
+            implementationClass="com.zcy.zsec.codeinspect.lang.java.rule.RegexDosInspector"
+        />
+
     </extensions>
 
     <application-components>
