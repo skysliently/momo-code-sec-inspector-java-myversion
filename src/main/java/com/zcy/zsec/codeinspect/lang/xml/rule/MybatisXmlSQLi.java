@@ -112,8 +112,13 @@ public class MybatisXmlSQLi extends ZSecBaseLocalInspectionTool {
                 .map(String::trim)
                 .filter(item -> !item.isEmpty())
                 .collect(Collectors.toList());
-        String checkStr = fragments.get(fragments.size()-2) + fragments.get(fragments.size()-1);
-        return orderByVarName.contains(checkStr.toLowerCase());
+        try {
+            String checkStr = fragments.get(fragments.size()-2) + fragments.get(fragments.size()-1);
+            return orderByVarName.contains(checkStr.toLowerCase());
+        } catch (Exception e) {
+//            log : not check point
+            return false;
+        }
     }
 
     public static class MybatisXmlSQLiQuickFix implements LocalQuickFix {
